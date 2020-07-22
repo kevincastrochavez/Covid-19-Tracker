@@ -4,6 +4,7 @@ import {
   FormControl,
   Select
 } from '@material-ui/core';
+import InfoBox from './infoBox';
 import './App.css';
 
 
@@ -35,7 +36,9 @@ function App() {
   }
 
   return (
+
     <div className="App">
+
       <div className="app__header">
         <h1>Covid Tracker</h1>
         <FormControl className="app__dropdown">
@@ -44,19 +47,25 @@ function App() {
             value={country}
             onChange={onCountryChange}
           >
+
             <MenuItem value="worldwide">Worldwide</MenuItem>
+
             {
               countries.map(country => (
                 <MenuItem value={country.value}>{country.name}</MenuItem>
               ))
             }
-            {/* <MenuItem value="worldwide">Worldwide</MenuItem>
-            <MenuItem value="worldwide">Option 2</MenuItem>
-            <MenuItem value="worldwide">Option 3</MenuItem>
-            <MenuItem value="worldwide">Option 4</MenuItem> */}
+
           </Select>
         </FormControl>
       </div>
+
+      <div className="app__stats">
+        <InfoBox title="Coronavirus Cases" cases={123} total={2000} />
+        <InfoBox title="Recovered" cases={123} total={325}/>
+        <InfoBox title="Deaths" cases={123} total={189} />
+      </div>
+
     </div>
   );
 }
