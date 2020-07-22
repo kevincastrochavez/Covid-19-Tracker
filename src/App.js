@@ -9,6 +9,8 @@ import {
 import InfoBox from './infoBox';
 import Map from './map';
 import Table from './table';
+import { sortData } from './util';
+import LineGraph from './lineGraph';
 import './app.css';
 
 
@@ -36,7 +38,8 @@ function App() {
               value: country.countryInfo.iso2
             }));
 
-          setTableData(data);
+          const sortedData = sortData(data);
+          setTableData(sortedData);
           setCountries(countries);
         });
     };
@@ -119,7 +122,9 @@ function App() {
 
           <Table countries={tableData} />
 
-          <h3>Worldwide new Cases</h3>
+          <h3>Worldwide New Cases</h3>
+
+          <LineGraph />
 
         </CardContent>
       </Card>
