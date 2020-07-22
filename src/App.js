@@ -8,6 +8,7 @@ import {
 } from '@material-ui/core';
 import InfoBox from './infoBox';
 import Map from './map';
+import Table from './table';
 import './app.css';
 
 
@@ -15,6 +16,7 @@ function App() {
   const [countries, setCountries] = useState([]);
   const [country, setCountry] = useState('worldwide');
   const [countryInfo, setCountryInfo] = useState({});
+  const [tableData, setTableData] = useState([]);
 
   useEffect(() => {
     fetch('https://disease.sh/v3/covid-19/all')
@@ -27,16 +29,16 @@ function App() {
   useEffect(() => {
     const getCountriesData = async () => {
       await fetch('https://disease.sh/v3/covid-19/countries')
-      .then((response) => response.json())
-      .then((data) => {
-        const countries = data.map((country) => (
-          {
-            name: country.country,
-            value: country.countryInfo.iso2
-          }
-        ));
-        setCountries(countries)
-      });
+        .then((response) => response.json())
+        .then((data) => {
+          const countries = data.map((country) => ({
+              name: country.country,
+              value: country.countryInfo.iso2
+            }));
+
+          setTableData(data);
+          setCountries(countries);
+        });
     };
 
     getCountriesData();
@@ -48,17 +50,16 @@ function App() {
     const url = 
       countryCode === "worldwide" 
       ? 'https://disease.sh/v3/covid-19/all'
-      : `https://disease.sh/v3/covid-19/${countryCode}`;
+      : `https://disease.sh/v3/covid-19/countries/${countryCode}`;
+      console.log('url', url)
 
     await fetch(url)
-      .then(response => response.json())
-      .then(data => {
+      .then((response) => response.json())
+      .then((data) => {
         setCountry(countryCode);
         setCountryInfo(data);
-      })
+      });
   };
-
-  console.log("info", countryInfo)
 
   return (
 
@@ -87,11 +88,23 @@ function App() {
 
         <div className="app__stats">
 
-          <InfoBox title="Coronavirus Cases" cases={countryInfo.todayCases} total={countryInfo.cases} />
+          <InfoBox 
+            title="Coronavirus Cases" 
+            cases={countryInfo.todayCases} 
+            total={countryInfo.cases} 
+            />
 
-          <InfoBox title="Recovered" cases={countryInfo.todayRecovered} total={countryInfo.recovered}/>
+          <InfoBox 
+            title="Recovered" 
+            cases={countryInfo.todayRecovered} 
+            total={countryInfo.recovered}
+            />
 
-          <InfoBox title="Deaths" cases={countryInfo.todayDeaths} total={countryInfo.deaths} />
+          <InfoBox 
+            title="Deaths" 
+            cases={countryInfo.todayDeaths} 
+            total={countryInfo.deaths} 
+            />
 
         </div>
 
@@ -103,6 +116,8 @@ function App() {
         <CardContent>
 
           <h3>Live Cases by Country</h3>
+
+          <Table countries={tableData} />
 
           <h3>Worldwide new Cases</h3>
 
