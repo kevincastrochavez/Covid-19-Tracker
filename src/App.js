@@ -9,10 +9,10 @@ import {
 import InfoBox from './infoBox';
 import Map from './map';
 import Table from './table';
-import { sortData, prettyPrintStat } from './util';
+import { sortData, prettyPrintStat } from './helpers/util';
 import LineGraph from './lineGraph';
 import 'leaflet/dist/leaflet.css';
-import './app.css';
+import './styles/app.css';
 
 
 function App() {
@@ -76,14 +76,12 @@ function App() {
       })
   };
 
-  console.log("info", countryInfo)
-
   return (
 
     <div className="app">
       <div className="app__left">
         <div className="app__header">
-          <h1>Covid Tracker</h1>
+          <h1>Covid-19 Tracker</h1>
           <FormControl className="app__dropdown">
             <Select
               variant="outlined"
@@ -109,7 +107,7 @@ function App() {
             isRed
             active={casesType === "cases"}
             onClick={e => setCasesType("cases")} 
-            title="Coronavirus Cases" 
+            title="Casos de Coronavirus" 
             cases={prettyPrintStat(countryInfo.todayCases)} 
             total={prettyPrintStat(countryInfo.cases)} 
           />
@@ -117,7 +115,7 @@ function App() {
           <InfoBox
             active={casesType === "recovered"}
             onClick={e => setCasesType("recovered")} 
-            title="Recovered" 
+            title="Recuperados" 
             cases={prettyPrintStat(countryInfo.todayRecovered)} 
             total={prettyPrintStat(countryInfo.recovered)}
           />
@@ -126,7 +124,7 @@ function App() {
             isRed
             active={casesType === "deaths"}
             onClick={e => setCasesType("deaths")} 
-            title="Deaths" 
+            title="Muertes" 
             cases={prettyPrintStat(countryInfo.todayDeaths)} 
             total={prettyPrintStat(countryInfo.deaths)} 
           />
@@ -145,13 +143,13 @@ function App() {
       <Card className="app__right">
         <CardContent>
 
-          <h3>Live Cases by Country</h3>
+          <h3 className="app__rightTableTitle">Casos Actuales por Coronavirus</h3>
 
             <Table countries={tablaData} />
 
-            <h3>Worldwide New {casesType}</h3>
+            <h3 className="app__rightGraphTitle">Worldwide New {casesType} </h3>
           
-          <LineGraph casesType={casesType} />
+          <LineGraph className="app__graph" casesType={casesType} />
           
         </CardContent>
       </Card>

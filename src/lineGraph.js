@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState, useEffect } from 'react';
 import { Line } from 'react-chartjs-2';
 import numeral from 'numeral';
 
@@ -60,7 +60,8 @@ const buildChartData = (data, casesType) => {
         lastDataPoint = data[casesType][date];
     }
     return chartData;
-}
+};
+
 function LineGraph({ casesType, ...props }) {
     const [data, setData] = useState({});
     
@@ -94,7 +95,7 @@ function LineGraph({ casesType, ...props }) {
             )}
             
         </div>
-    )
-}
+    );
+};
 
 export default LineGraph;
