@@ -13,4 +13,4 @@ function Table({ countries }) {
     )
 }
 
-export default Table
+export default Table;

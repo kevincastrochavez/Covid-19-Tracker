@@ -9,6 +9,7 @@ import {
 import InfoBox from './infoBox';
 import Map from './map';
 import Table from './table';
+import { sortData } from './util';
 import './app.css';
 
 
@@ -38,7 +39,8 @@ function App() {
           }
         ));
 
-        setTableData(data);
+        const sortedData = sortData(data);
+        setTableData(sortedData);
         setCountries(countries)
       });
     };
