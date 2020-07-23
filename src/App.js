@@ -79,80 +79,87 @@ function App() {
   return (
 
     <div className="app">
-      <div className="app__left">
-        <div className="app__header">
-          <h1>Covid-19 Tracker</h1>
-          <FormControl className="app__dropdown">
-            <Select
-              variant="outlined"
-              value={country}
-              onChange={onCountryChange}
-            >
+      <div className="app__container">
 
-              <MenuItem value="worldwide">Worldwide</MenuItem>
+        <div className="app__left">
+          <div className="app__header">
+            <h1>Covid-19 Tracker</h1>
+            <FormControl className="app__dropdown">
+              <Select
+                variant="outlined"
+                value={country}
+                onChange={onCountryChange}
+              >
 
-              {
-                countries.map((country) => (
-                  <MenuItem value={country.value}>{country.name}</MenuItem>
-                ))
-              }
+                <MenuItem value="worldwide">Worldwide</MenuItem>
 
-            </Select>
-          </FormControl>
+                {
+                  countries.map((country) => (
+                    <MenuItem value={country.value}>{country.name}</MenuItem>
+                  ))
+                }
+
+              </Select>
+            </FormControl>
+          </div>
+
+          <div className="app__stats">
+
+            <InfoBox
+              isRed
+              active={casesType === "cases"}
+              onClick={e => setCasesType("cases")} 
+              title="Casos de Coronavirus" 
+              cases={prettyPrintStat(countryInfo.todayCases)} 
+              total={prettyPrintStat(countryInfo.cases)} 
+            />
+
+            <InfoBox
+              active={casesType === "recovered"}
+              onClick={e => setCasesType("recovered")} 
+              title="Recuperados" 
+              cases={prettyPrintStat(countryInfo.todayRecovered)} 
+              total={prettyPrintStat(countryInfo.recovered)}
+            />
+
+            <InfoBox
+              isRed
+              active={casesType === "deaths"}
+              onClick={e => setCasesType("deaths")} 
+              title="Muertes" 
+              cases={prettyPrintStat(countryInfo.todayDeaths)} 
+              total={prettyPrintStat(countryInfo.deaths)} 
+            />
+
+          </div>
+
+          <Map 
+            casesType={casesType}
+            countries={mapCountries}
+            center={mapCenter}
+            zoom={mapZoom}
+          />
+
         </div>
 
-        <div className="app__stats">
+        <Card className="app__right">
+          <CardContent>
 
-          <InfoBox
-            isRed
-            active={casesType === "cases"}
-            onClick={e => setCasesType("cases")} 
-            title="Casos de Coronavirus" 
-            cases={prettyPrintStat(countryInfo.todayCases)} 
-            total={prettyPrintStat(countryInfo.cases)} 
-          />
+            <h3 className="app__rightTableTitle">Casos Actuales por Coronavirus</h3>
 
-          <InfoBox
-            active={casesType === "recovered"}
-            onClick={e => setCasesType("recovered")} 
-            title="Recuperados" 
-            cases={prettyPrintStat(countryInfo.todayRecovered)} 
-            total={prettyPrintStat(countryInfo.recovered)}
-          />
+              <Table countries={tablaData} />
 
-          <InfoBox
-            isRed
-            active={casesType === "deaths"}
-            onClick={e => setCasesType("deaths")} 
-            title="Muertes" 
-            cases={prettyPrintStat(countryInfo.todayDeaths)} 
-            total={prettyPrintStat(countryInfo.deaths)} 
-          />
-
-        </div>
-
-        <Map 
-          casesType={casesType}
-          countries={mapCountries}
-          center={mapCenter}
-          zoom={mapZoom}
-        />
-
+              <h3 className="app__rightGraphTitle">Worldwide New {casesType} </h3>
+            
+            <LineGraph className="app__graph" casesType={casesType} />
+            
+          </CardContent>
+        </Card>
       </div>
 
-      <Card className="app__right">
-        <CardContent>
-
-          <h3 className="app__rightTableTitle">Casos Actuales por Coronavirus</h3>
-
-            <Table countries={tablaData} />
-
-            <h3 className="app__rightGraphTitle">Worldwide New {casesType} </h3>
-          
-          <LineGraph className="app__graph" casesType={casesType} />
-          
-        </CardContent>
-      </Card>
+      <div className="app__name">
+        <a href="https://kcc-react-portfolio.herokuapp.com/" target="_blank">Kevin Castro Portfolio</a>
+      </div>
 
    </div>
   );
