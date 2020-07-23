@@ -6,11 +6,6 @@ body {
   background-color: #f5f6fa;
 }
 
-.app {
-  display: flex;
-  flex-direction: column;
-}
-
 .app__container {
   display: flex;
   justify-content: space-evenly;
@@ -85,7 +80,7 @@ body {
 }
 
 @media (max-width: 990px) {
-  .app {
+  .app__container {
     flex-direction: column;
   }
 }

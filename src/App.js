@@ -77,10 +77,8 @@ function App() {
   };
 
   return (
-
     <div className="app">
       <div className="app__container">
-
         <div className="app__left">
           <div className="app__header">
             <h1>Covid-19 Tracker</h1>
@@ -160,8 +158,7 @@ function App() {
       <div className="app__name">
         <a href="https://kcc-react-portfolio.herokuapp.com/" target="_blank">Kevin Castro Portfolio</a>
       </div>
-
-   </div>
+  </div>
   );
 }
 
