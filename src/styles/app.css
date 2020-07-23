@@ -28,7 +28,7 @@ body {
   text-decoration: underline;
 }
 
-.app__header > h1 {
+.app__title > h1 {
   color: #fc3c3c;
   font-size: 2rem;
   margin-left: 25%;
@@ -80,7 +80,29 @@ body {
 }
 
 @media (max-width: 990px) {
+
   .app__container {
     flex-direction: column;
+  }
+
+  .app__left {
+    margin-bottom: 20px;
+  }
+  
+  .app__title h1 {
+    font-size: 18px;
+    margin-left: 5%;
+  }
+  
+  .app__right {
+    margin-left: 0;
+  }
+
+  .table {
+    margin-bottom: 20px;
+  }
+  
+  .app__name {
+    font-size: 12px;
   }
 }

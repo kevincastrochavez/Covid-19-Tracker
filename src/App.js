@@ -81,7 +81,11 @@ function App() {
       <div className="app__container">
         <div className="app__left">
           <div className="app__header">
-            <h1>Covid-19 Tracker</h1>
+
+            <div className="app__title">
+              <h1>Covid-19 Tracker</h1>
+            </div>
+
             <FormControl className="app__dropdown">
               <Select
                 variant="outlined"
@@ -99,6 +103,7 @@ function App() {
 
               </Select>
             </FormControl>
+
           </div>
 
           <div className="app__stats">
