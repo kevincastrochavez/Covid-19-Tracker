@@ -55,7 +55,7 @@ function App() {
     const url = 
       countryCode === "worldwide" 
       ? 'https://disease.sh/v3/covid-19/all'
-      : `https://disease.sh/v3/covid-19/${countryCode}`;
+      : `https://disease.sh/v3/covid-19/countries/${countryCode}`;
 
     await fetch(url)
       .then(response => response.json())
@@ -83,7 +83,7 @@ function App() {
               <MenuItem value="worldwide">Worldwide</MenuItem>
 
               {
-                countries.map(country => (
+                countries.map((country) => (
                   <MenuItem value={country.value}>{country.name}</MenuItem>
                 ))
               }
