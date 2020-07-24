@@ -21,7 +21,7 @@ function App() {
   const [countryInfo, setCountryInfo] = useState({});
   const [tablaData, setTableData] = useState([]);
   const [mapCenter, setMapCenter] = 
-    useState({ lat: 34.80746, lng: -40.4796 });
+    useState({ lat: 19.465813, lng: -99.086821 });
   const [mapZoom, setMapZoom] = 
     useState(3);
   const [mapCountries, setMapCountries] = useState([]);
