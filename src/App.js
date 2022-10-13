@@ -148,7 +148,10 @@ function App() {
       </div>
 
       <div className='app__name'>
-        <a href='https://kevincastro.webflow.io/' target='_blank'>
+        <a
+          href='https://kevins-portfolio-project-0533e7.webflow.io/'
+          target='_blank'
+        >
           Kevin Castro Portfolio
         </a>
       </div>
